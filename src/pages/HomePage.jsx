@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import MovingColumns from '/components/MovingColumns';
+import MovingColumns from '/sections/MovingColumns';
 import { Container, Row, Col, Button, Card, Form } from 'react-bootstrap'
 
 const HomePage = () => {
@@ -55,6 +55,13 @@ const HomePage = () => {
             {/* Glass CTA Card */}
             <div className="hero-cta-wrapper">
               <div className="hero-cta-card">
+
+                {/* Moving border lines */}
+                <div className="moving-line top-line"></div>
+                <div className="moving-line bottom-line"></div>
+                <div className="moving-line left-line"></div>
+                <div className="moving-line right-line"></div>
+
                 <div className="cta-block">
                   <h3>Launch a Cohort</h3>
                   <Button className="btn-outline-custom">

@@ -22,7 +22,7 @@ const Footer = () => {
           <Col lg={4} md={6} className="footer-column">
             <h4 className="footer-title">Quick Links</h4>
             <ul className="footer-links">
-              <li><Link to="/homepage" className={`${isActive('/homepage') ? 'active' : ''}`}>About us</Link></li>
+              <li><Link to="/" className={`${isActive('/') ? 'active' : ''}`}>About us</Link></li>
               <li><Link to="/register" className={`${isActive('/register') ? 'active' : ''}`}>Register Now</Link></li>
               <li><Link to="/funding-opportunities" className={`${isActive('/funding-opportunities') ? 'active' : ''}`}>Funding Opportunities</Link></li>
               <li><Link to="/jobs" className={`${isActive('/jobs') ? 'active' : ''}`}>Job Opportunities</Link></li>

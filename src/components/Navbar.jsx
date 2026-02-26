@@ -19,6 +19,7 @@ const Navbar = () => {
         <BootstrapNavbar.Brand as={Link} to="/" className="navbar-brand">
           <div className="logo">
             <img src="/images/fundink-logo.svg" alt="Fundink Logo" className="logo-image" />
+            <img src="/images/footer-logo.svg" alt="Fundink Logo" className="logo-image-new" />
           </div>
         </BootstrapNavbar.Brand>
         
@@ -28,8 +29,8 @@ const Navbar = () => {
           <Nav className="mx-auto navbar-nav-center">
             <Nav.Link 
               as={Link} 
-              to="/homepage" 
-              className={`nav-link-item ${isActive('/homepage') ? 'active' : ''}`}
+              to="/" 
+              className={`nav-link-item ${isActive('/') ? 'active' : ''}`}
               onClick={() => setExpanded(false)}
             >
               About

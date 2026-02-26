@@ -43,19 +43,42 @@ const ScrollingColumns = () => {
       <style>{`
         .scrolling-container {
           display: flex;
-          gap: 24px;
+          position: relative;
+          gap: 65px;
           justify-content: center;
           padding: 56px 0px 0px 0px;
           flex-wrap: wrap;
           box-sizing: border-box;
           font-family: 'Segoe UI', Roboto, sans-serif;
         }
+
+        .scrolling-container::before,
+        .scrolling-container::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 120px;             /* height of blurred area – adjust as needed */
+          pointer-events: none;      /* allows clicks to pass through */
+          z-index: 1;
+        }
+
+        .scrolling-container::before {
+          top: 0;
+          background: linear-gradient(180deg, #FFF 29.17%, rgba(255, 255, 255, 0.00) 140.48%);
+        }
+
+        .scrolling-container::after {
+          bottom: 0;
+          background: linear-gradient(360deg, #FFF 29.17%, rgba(255, 255, 255, 0.00) 140.48%);
+        }
+
         .column-wrapper {
           flex: 1 1 180px;
           max-width: 220px;
           overflow: hidden;
           border-radius: 12px;
-          height: ${boxHeight * 6}px !important; /* Show 3 boxes at a time */
+          height: ${boxHeight * 8}px !important; /* Show 3 boxes at a time */
         }
         .scroll-content {
           display: flex;
@@ -70,18 +93,23 @@ const ScrollingColumns = () => {
         }
         .box {
           background: white;
-          border: 1px solid #ddd;
-          border-radius: 12px;
-          padding: 16px 8px;
+          border-radius: 10px;
+          border: 1px solid #eefbfa;
+          background: #FFF;
+          box-shadow: 0 4px 44px 0 rgba(0, 0, 0, 0.02);
+          padding: 36px;
           text-align: center;
-          font-size: 0.95rem;
+          color: #0160D6;
+          text-align: center;
+          font-family: "Inter";
+          font-size: 18px;
+          font-style: normal;
           font-weight: 500;
-          color: #1e2b3c;
-          box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+          line-height: normal;
           transition: all 0.2s ease;
           cursor: default;
           word-break: break-word;
-          height: ${boxHeight}px;
+          height: 95px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -127,9 +155,8 @@ const ScrollingColumns = () => {
             style={{ height: containerHeight }}
           >
             <div
-              className={`scroll-content ${
-                colIndex % 2 === 0 ? "scroll-up" : "scroll-down"
-              }`}
+              className={`scroll-content ${colIndex % 2 === 0 ? "scroll-up" : "scroll-down"
+                }`}
             >
               {duplicated.map((text, i) => (
                 <div key={i} className="box">
