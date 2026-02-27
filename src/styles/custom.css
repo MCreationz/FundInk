@@ -118,6 +118,7 @@ a {
   transform: translateX(0);
   opacity: 1;
 }
+
 .navbar-nav-center {
   gap: 30px;
 }
@@ -125,7 +126,7 @@ a {
 .nav-link-item {
   color: #2B2B2B;
   text-align: center;
-  font-family: Inter;
+  font-family: "Inter";
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
@@ -164,7 +165,7 @@ a {
   padding: 21px 25px;
   color: #FFF;
   text-align: center;
-  font-family: Inter;
+  font-family: "Inter";
   font-size: 18px;
   font-weight: 600;
   line-height: normal;
@@ -184,6 +185,7 @@ a {
   color: #2B2B2B;
   text-align: center;
   font-size: 18px;
+  font-family: "Inter";
   font-weight: 600;
   line-height: normal;
   transition: all 0.3s ease;
@@ -507,34 +509,6 @@ img.logo-i {
 .arrow-right {
   width: 20px;
   height: 13.992px;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 992px) {
-  .hero-title {
-    font-size: 48px;
-  }
-
-  .hero-cta-card {
-    flex-direction: column;
-    gap: 30px;
-    padding: 40px;
-  }
-
-  .cta-divider {
-    display: none;
-  }
-
-  .hero-banner {
-    font-size: 20px;
-    padding: 18px 40px;
-    text-align: center;
-  }
-
-  .hero-info-card {
-    margin-top: 40px;
-  }
 }
 
 /* ============================================
@@ -1222,13 +1196,6 @@ img.offer-section-visual {
   border-bottom: 1px solid #EEEEEE;
 }
 
-.footer-logo {
-  font-size: 48px;
-  font-weight: 800;
-  color: var(--text-dark);
-  margin: 0;
-}
-
 .footer-tagline {
   display: flex;
   align-items: center;
@@ -1307,6 +1274,7 @@ img.offer-section-visual {
 
 .footer-contact a {
   color: var(--primary-blue);
+  font-weight: 500;
 }
 
 .footer-address a {
@@ -1768,189 +1736,89 @@ img.offer-section-visual {
   color: white;
 }
 
-/* ============================================
-   RESPONSIVE STYLES
-   ============================================ */
-@media (max-width: 1199px) {
-  .hero-title {
-    font-size: 52px;
-  }
 
-  .hero-banner span {
-    font-size: 22px;
-  }
 
-  .hero-ctas {
-    gap: 50px;
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.custom-select-wrapper {
+  position: relative;
+  overflow: hidden;
 }
 
-@media (max-width: 991px) {
-  .hero-title {
-    font-size: 42px;
-  }
+/* Custom arrow */
+.custom-select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
 
-  .hero-content {
-    padding-right: 0;
-    margin-bottom: 40px;
-  }
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 12px solid #0A66C2;
+  /* Your blue */
 
-  .hero-ctas {
-    gap: 40px;
-  }
-
-  .hero-banner span {
-    font-size: 18px;
-  }
-
-  .section-title {
-    font-size: 36px;
-  }
-
-  .register-title {
-    font-size: 36px;
-  }
-
-  .timeline::before {
-    left: 20px;
-  }
-
-  .timeline-item {
-    width: 100%;
-    left: 0 !important;
-    text-align: left !important;
-    padding-left: 60px;
-  }
-
-  .timeline-item::before {
-    left: 12px !important;
-    right: auto !important;
-  }
-
-  .mission-content {
-    padding-right: 0;
-    margin-bottom: 40px;
-  }
+  pointer-events: none;
 }
 
-@media (max-width: 767px) {
-  .fundink-navbar {
-    padding: 10px 0;
-  }
-
-  .navbar-actions {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
-  }
-
-  .hero-section {
-    padding: 50px 0;
-  }
-
-  .hero-title {
-    font-size: 32px;
-  }
-
-  .hero-ctas {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .hero-banner {
-    padding: 15px 25px;
-  }
-
-  .hero-banner span {
-    font-size: 16px;
-  }
-
-  .section-title {
-    font-size: 28px;
-    margin-bottom: 30px;
-  }
-
-  .features-section,
-  .offer-section,
-  .sectors-section,
-  .trusted-section,
-  .register-section {
-    padding: 50px 0;
-  }
-
-  .partners-logos {
-    gap: 40px;
-  }
-
-  .register-form-wrapper {
-    padding: 25px;
-  }
-
-  .contact-social {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .footer-top {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .about-hero-title {
-    font-size: 36px;
-  }
-
-  .about-hero-subtitle {
-    font-size: 18px;
-  }
-
-  .cta-box {
-    padding: 40px 25px;
-  }
-
-  .cta-box h2 {
-    font-size: 24px;
-  }
-
-  .mission-circle {
-    width: 220px;
-    height: 220px;
-  }
-
-  .mission-stat {
-    font-size: 36px;
-  }
+.mobile-show {
+  display: none;
 }
 
-@media (max-width: 575px) {
-  .hero-title {
-    font-size: 28px;
-  }
 
-  .browser-header {
-    padding: 10px;
-  }
 
-  .browser-url {
-    font-size: 11px;
-    padding: 5px 10px;
-  }
 
-  .browser-content {
-    padding: 20px;
-  }
 
-  .sectors-cloud {
-    gap: 10px;
-  }
 
-  .sector-tag {
-    padding: 8px 15px;
-    font-size: 12px;
-  }
+/* ================================ Coming Soon ============================== */
+
+.coming-soon {
+  height: 80vh;
+}
+
+.coming-soon .container {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+.coming-soon-title {
+  font-size: clamp(40px, 8vw, 120px);
+  text-align: center;
+  color: #2B2B2B;
+  font-family: "Coolvetica";
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 2.55px;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%   { transform: scale(1); }
+  14%  { transform: scale(1.15); }
+  28%  { transform: scale(1); }
+  42%  { transform: scale(1.15); }
+  70%  { transform: scale(1); }
+  100% { transform: scale(1); }
 }

@@ -23,10 +23,10 @@ const Footer = () => {
             <h4 className="footer-title">Quick Links</h4>
             <ul className="footer-links">
               <li><Link to="/" className={`${isActive('/') ? 'active' : ''}`}>About us</Link></li>
-              <li><Link to="/register" className={`${isActive('/register') ? 'active' : ''}`}>Register Now</Link></li>
-              <li><Link to="/funding-opportunities" className={`${isActive('/funding-opportunities') ? 'active' : ''}`}>Funding Opportunities</Link></li>
-              <li><Link to="/jobs" className={`${isActive('/jobs') ? 'active' : ''}`}>Job Opportunities</Link></li>
-              <li><Link to="/blog" className={`${isActive('/blog') ? 'active' : ''}`}>Impact Blog</Link></li>
+              <li><Link to="#" className={`${isActive('/register') ? 'active' : ''}`}>Register Now</Link></li>
+              <li><Link to="#" className={`${isActive('/funding-opportunities') ? 'active' : ''}`}>Funding Opportunities</Link></li>
+              <li><Link to="#" className={`${isActive('/jobs') ? 'active' : ''}`}>Job Opportunities</Link></li>
+              <li><Link to="#" className={`${isActive('/blog') ? 'active' : ''}`}>Impact Blog</Link></li>
             </ul>
           </Col>
           
@@ -53,11 +53,11 @@ const Footer = () => {
         <div className="footer-bottom">
           <p className="copyright">&copy; 2026 FundInk</p>
           <div className="footer-legal">
-            <Link to="/terms">Terms of Use</Link>
+            <Link to="#">Terms of Use</Link>
             <span className="separator">|</span>
-            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="#">Privacy Policy</Link>
             <span className="separator">|</span>
-            <Link to="/cookies">Cookies Setting</Link>
+            <Link to="#">Cookies Setting</Link>
           </div>
         </div>
       </Container>

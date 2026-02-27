@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg" href="/images/fundink-logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FundInk - Simplifying Funding. Accelerating Impact.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +18,29 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
+
+  <!-- 👇 THIS MUST BE LAST -->
+<script>
+  window.onload = function () {
+    const originalTitle = document.title;
+    let interval = null;
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) {
+        if (!interval) {
+          interval = setInterval(() => {
+            document.title =
+              document.title = "We miss you 💙";
+          }, 600);
+        }
+      } else {
+        clearInterval(interval);
+        interval = null;
+        document.title = originalTitle;
+      }
+    });
+  };
+</script>
 </body>
 
 </html>

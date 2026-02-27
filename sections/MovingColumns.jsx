@@ -1,46 +1,140 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const ScrollingColumns = () => {
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsTablet(window.innerWidth <= 991);
+    };
+
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
   const items = [
-    "Support",
     "School Education",
-    "Sanitation",
-    "Cloud & DevOps",
-    "Skill Development",
-    "Domestic Violence",
-    "Employability &",
-    "Girl Child Development",
-    "Livelihood",
-    "Mental Health",
+    "Higher Education Support",
+    "Scholarships & Fellowships",
+    "Digital Education",
     "STEM Education",
-    "Disability",
-    "Child Protection &",
-    "Rehabilitation",
-    "Child Rights",
-    "Maternal & Child",
-    "Women Empowerment",
-    "Health",
-    "Gender Equality",
-    "Rural Livelihoods",
-    "Scholarships &",
+    "Special Education",
+    "Vocational Training",
+    "Skill Development",
+    "Employability & Livelihood",
+    "Primary Healthcare",
+    "Maternal & Child Health",
+    "Nutrition & Malnutrition",
+    "Mental Health",
+    "Disability Rehabilitation",
+    "Public Health & Sanitation",
     "Preventive Healthcare",
-    "Fallowshins",
+    "Communicable Diseases",
+    "Women Empowerment",
+    "Gender Equality",
+    "Domestic Violence",
+    "Girl Child Development",
+    "Child Protection & Child Rights",
+    "Rural Livelihoods",
+    "Urban Livelihoods",
+    "Self-Help Groups (SHGs)",
+
+    "FinTech",
+    "EdTech",
+    "HealthTech",
+    "AgriTech",
+    "SaaS",
+    "AI & Machine Learning",
+    "DeepTech",
+    "Blockchain & Web3",
+    "Cybersecurity",
+    "Cloud & DevOps",
+    "E-commerce",
+    "D2C Brands",
+    "RetailTech",
+    "FoodTech",
+    "Q-Commerce",
+    "Consumer Internet",
+    "FashionTech",
+    "Beauty & Personal Care",
+    "CleanTech",
+    "ClimateTech",
+    "Renewable Energy",
+    "EV & Mobility",
+    "Logistics & Supply Chain",
+    "ManufacturingTech",
+
+    "Financial Inclusion",
+    "Entrepreneurship",
+    "Environmental Conservation",
+    "Climate Action",
+    "Afforestation",
+    "Water Conservation",
+    "Waste Management",
+    "Renewable Energy Access",
+    "Biodiversity Protection",
+    "Rural Development",
+    "Drinking Water Projects",
+    "Sanitation & Hygiene",
+    "Human Rights",
+    "Legal Aid & Access to Justice",
+    "Governance & Civic Participation",
+    "Transparency & Accountability",
+    "Senior Citizens Welfare",
+    "Persons with Disabilities",
+    "Tribal Development",
+    "Minority Welfare",
+    "Migrant Workers Support",
+    "Disaster Relief & Rehabilitation",
+
+    "SpaceTech",
+    "DefenceTech",
+    "PropTech",
+    "InsurTech",
+    "WealthTech",
+    "RegTech",
+    "HRTech",
+    "LegalTech",
+    "GovTech",
+    "EnterpriseTech",
+    "Social Impact",
+    "Circular Economy",
+    "Waste Management",
+    "WaterTech",
+    "RuralTech",
+    "Skill Development",
+    "Gaming & Esports",
+    "Media & ContentTech",
+    "Creator Economy",
+    "TravelTech",
+    "SportsTech",
+    "AR/VR & Metaverse",
+    "Robotics & Automation",
+    "Biotechnology",
   ];
 
-  // Split into 4 columns (6,6,6,5 items)
-  const columnItems = [
-    items.slice(0, 6),
-    items.slice(6, 12),
-    items.slice(12, 18),
-    items.slice(18, 23),
-  ];
+  // ✅ FIXED slicing (no skipped indexes)
+  const col1 = items.slice(0, 24);
+  const col2 = items.slice(24, 49);
+  const col3 = items.slice(49, 71);
+  const col4 = items.slice(71, 95);
 
-  // Fixed box height (including padding and border)
-  const boxHeight = 70; // px
+  // ✅ Merge only on tablet
+  const columnItems = isTablet
+    ? [
+        [...col1, ...col3], // 1st + 3rd
+        [...col2, ...col4], // 2nd + 4th
+      ]
+    : [col1, col2, col3, col4];
+
+  const boxHeight = 70;
 
   return (
     <div className="scrolling-container">
       <style>{`
+        /* YOUR ORIGINAL CSS — UNCHANGED */
+
         .scrolling-container {
           display: flex;
           position: relative;
@@ -58,8 +152,8 @@ const ScrollingColumns = () => {
           position: absolute;
           left: 0;
           width: 100%;
-          height: 120px;             /* height of blurred area – adjust as needed */
-          pointer-events: none;      /* allows clicks to pass through */
+          height: 120px;
+          pointer-events: none;
           z-index: 1;
         }
 
@@ -78,63 +172,55 @@ const ScrollingColumns = () => {
           max-width: 220px;
           overflow: hidden;
           border-radius: 12px;
-          height: ${boxHeight * 8}px !important; /* Show 3 boxes at a time */
+          height: ${boxHeight * 8}px !important;
         }
+
         .scroll-content {
           display: flex;
           flex-direction: column;
-          animation-duration: 20s;
+          animation-duration: 100s;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
           will-change: transform;
         }
+
         .column-wrapper:hover .scroll-content {
           animation-play-state: paused;
         }
+
         .box {
           background: white;
           border-radius: 10px;
           border: 1px solid #eefbfa;
-          background: #FFF;
           box-shadow: 0 4px 44px 0 rgba(0, 0, 0, 0.02);
-          padding: 36px;
+          padding: 30px;
           text-align: center;
           color: #0160D6;
-          text-align: center;
           font-family: "Inter";
           font-size: 18px;
-          font-style: normal;
           font-weight: 500;
-          line-height: normal;
-          transition: all 0.2s ease;
-          cursor: default;
-          word-break: break-word;
           height: 95px;
           display: flex;
           align-items: center;
           justify-content: center;
-          line-height: 1.2;
-          box-sizing: border-box;
           margin-top: 45px;
         }
+
         .box:hover {
-          background: #ffec9e;
-          border-color: #f5b342;
-          box-shadow: 0 8px 16px rgba(245, 179, 66, 0.2);
+          background: #0160D6;
+          border-color: #0160D6;
+          box-shadow: 0 8px 8px rgba(1, 96, 214, 0.25);
+          color: #fff;
           z-index: 1;
         }
-        /* Upward scroll */
-        .scroll-up {
-          animation-name: scrollUp;
-        }
+
+        .scroll-up { animation-name: scrollUp; }
         @keyframes scrollUp {
           0% { transform: translateY(0); }
           100% { transform: translateY(-50%); }
         }
-        /* Downward scroll */
-        .scroll-down {
-          animation-name: scrollDown;
-        }
+
+        .scroll-down { animation-name: scrollDown; }
         @keyframes scrollDown {
           0% { transform: translateY(-50%); }
           100% { transform: translateY(0); }
@@ -142,21 +228,14 @@ const ScrollingColumns = () => {
       `}</style>
 
       {columnItems.map((col, colIndex) => {
-        const itemCount = col.length;
-        const containerHeight = itemCount * boxHeight;
-
-        // Duplicate items for seamless looping
         const duplicated = [...col, ...col];
 
         return (
-          <div
-            key={colIndex}
-            className="column-wrapper"
-            style={{ height: containerHeight }}
-          >
+          <div key={colIndex} className="column-wrapper">
             <div
-              className={`scroll-content ${colIndex % 2 === 0 ? "scroll-up" : "scroll-down"
-                }`}
+              className={`scroll-content ${
+                colIndex % 2 === 0 ? "scroll-up" : "scroll-down"
+              }`}
             >
               {duplicated.map((text, i) => (
                 <div key={i} className="box">

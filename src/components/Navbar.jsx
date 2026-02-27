@@ -64,7 +64,7 @@ const Navbar = () => {
           <div className="navbar-actions">
             <Button 
               as={Link} 
-              to="/active-calls" 
+              to="/coming-soon" 
               className="btn-active-calls"
             >
               Active Calls
