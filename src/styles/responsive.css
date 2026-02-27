@@ -849,7 +849,7 @@
 
     .hero-banner {
         font-size: 14px;
-        padding: 15px 0px;
+        padding: 15px 10px;
         max-width: 94%;
     }
 
@@ -918,11 +918,19 @@
     }
 
     .hero-title {
-        font-size: 30px;
+        font-size: 28px;
         line-height: 10px;
     }
 
     .column-wrapper {
-        max-width: 150px !important;
+        max-width: 120px !important;
+    }
+
+    .box {
+        padding: 11px !important;
+    }
+
+    .footer-legal a {
+        font-size: 12px;
     }
 }

@@ -3,7 +3,7 @@
 /* Regular */
 @font-face {
   font-family: "Coolvetica";
-  src: url("./fonts/Coolvetica-Rg.otf") format("opentype");
+  src: url("/fonts/Coolvetica-Rg.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -12,7 +12,7 @@
 /* Italic */
 @font-face {
   font-family: "Coolvetica";
-  src: url("./fonts/Coolvetica-Rg-It.otf") format("opentype");
+  src: url("/fonts/Coolvetica-Rg-It.otf") format("opentype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -21,7 +21,7 @@
 /* Condensed */
 @font-face {
   font-family: "Coolvetica Condensed";
-  src: url("./fonts/Coolvetica-Rg-Cond.otf") format("opentype");
+  src: url("/fonts/Coolvetica-Rg-Cond.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -30,7 +30,7 @@
 /* Compressed */
 @font-face {
   font-family: "Coolvetica Compressed";
-  src: url("./fonts/Coolvetica-Rg-Cram.otf") format("opentype");
+  src: url("/fonts/Coolvetica-Rg-Cram.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -39,7 +39,7 @@
 /* Heavy */
 @font-face {
   font-family: "Coolvetica";
-  src: url("./fonts/Coolvetica-Hv-Comp.otf") format("opentype");
+  src: url("/fonts/Coolvetica-Hv-Comp.otf") format("opentype");
   font-weight: 800;
   font-style: normal;
   font-display: swap;

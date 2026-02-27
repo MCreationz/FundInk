@@ -1822,3 +1822,9 @@ img.offer-section-visual {
   70%  { transform: scale(1); }
   100% { transform: scale(1); }
 }
+
+
+
+select:focus {
+  outline: 6px solid white !important;
+}
