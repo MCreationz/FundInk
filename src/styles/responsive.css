@@ -592,7 +592,7 @@
     }
 
     .slide-to-right {
-        padding-left: 145px;
+        padding-left: 98px;
     }
 
     .hero-banner {
@@ -741,7 +741,7 @@
     }
 
     .slide-to-right {
-        padding-left: 55px;
+        padding-left: 15px;
     }
 
     img.logo-i {
@@ -910,6 +910,10 @@
         padding-bottom: 30px;
         gap: 10px;
     }
+
+    .footer-legal a {
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 375px) {
@@ -930,7 +934,4 @@
         padding: 11px !important;
     }
 
-    .footer-legal a {
-        font-size: 12px;
-    }
 }
