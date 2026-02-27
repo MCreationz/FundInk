@@ -35,7 +35,7 @@ const SignInPage = () => {
     };
 
     try {
-      const res = await fetch("https://formspree.io/f/xeeldovz", {
+      const res = await fetch("https://formspree.io/f/mzdawdbe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
