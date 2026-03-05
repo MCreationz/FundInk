@@ -1,72 +1,65 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import MovingColumns from '/sections/MovingColumns';
-import { Container, Row, Col, Button, Card, Form } from 'react-bootstrap'
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import MovingColumns from "/sections/MovingColumns";
+import { Container, Row, Col, Button, Card, Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { handleContact } from "../store/slices/contactSlice";
 const HomePage = () => {
-
-  const [organizationName, setOrganizationName] = useState("");
-  const [contactPerson, setContactPerson] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [userType, setUserType] = useState("");      // Fund Seeker / Funder / Partner
-  const [hearAbout, setHearAbout] = useState("");    // Social / Search / Referral
-  const [requirement, setRequirement] = useState("");
+  const dispatch = useAppDispatch();
+  const { loading } = useAppSelector((state) => state.contact);
 
   const sectors = [
-    'Support', 'School Education', 'Sanitation', 'Cloud & DevOps',
-    'Skill Development', 'Employability & Livelihood', 'Domestic Violence', 'Girl Child Development',
-    'Mental Health', 'Disability Rehabilitation', 'STEM Education', 'Child Protection & Child Rights',
-    'Women Empowerment', 'Gender Equality', 'Maternal & Child Health', 'Rural Livelihoods',
-    'Scholarships & Fellowships', 'Preventive Healthcare'
-  ]
+    "Support",
+    "School Education",
+    "Sanitation",
+    "Cloud & DevOps",
+    "Skill Development",
+    "Employability & Livelihood",
+    "Domestic Violence",
+    "Girl Child Development",
+    "Mental Health",
+    "Disability Rehabilitation",
+    "STEM Education",
+    "Child Protection & Child Rights",
+    "Women Empowerment",
+    "Gender Equality",
+    "Maternal & Child Health",
+    "Rural Livelihoods",
+    "Scholarships & Fellowships",
+    "Preventive Healthcare",
+  ];
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const data = {
-      organizationName,
-      contactPerson,
-      email,
-      phone,
-      userType,        // Fund Seeker / Funder / Partner
-      hearAbout,       // Social Media / Search Engine / Referral
-      requirement
-    };
-
+  const {
+    register,
+    formState: { errors },
+    reset,
+    handleSubmit,
+  } = useForm();
+  const onSubmit = async (data) => {
     try {
-      const res = await fetch("https://formspree.io/f/mzdawdbe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-
-      if (res.ok) {
-        alert("Form submitted successfully ✅");
-      } else {
-        alert("Submission failed ❌");
-      }
-
-    } catch (error) {
-      console.error("Error:", error);
-    }
+      await dispatch(handleContact(data)).unwrap();
+      reset();
+    } catch (error) {}
   };
 
   return (
     <div className="homepage">
       {/* Hero Section */}
       <section className="hero-section">
-
         <Container>
           <Row className="align-items-center">
             {/* LEFT CONTENT */}
             <Col lg={8}>
               <div className="hero-content">
                 <h1 className="hero-title">
-                  Simplifying Fund<img src="/images/i-logo.svg" alt="I Logo" className="logo-i" />ng
+                  Simplifying Fund
+                  <img
+                    src="/images/i-logo.svg"
+                    alt="I Logo"
+                    className="logo-i"
+                  />
+                  ng
                   <span className="slide-to-right">Accelerating Impact.</span>
                 </h1>
               </div>
@@ -75,17 +68,26 @@ const HomePage = () => {
             {/* RIGHT INFO CARD */}
             <Col lg={4}>
               <div className="hero-info-card">
-                <img src="/images/info-line.svg" alt="Info Line" className="info-line" />
+                <img
+                  src="/images/info-line.svg"
+                  alt="Info Line"
+                  className="info-line"
+                />
                 <h4>Redefining Funding</h4>
                 <p>
-                  We simplify funding to a 1,000-word concept note, so great ideas
-                  get funded faster. For Funders, we help in launching
+                  We simplify funding to a 1,000-word concept note, so great
+                  ideas get funded faster. For Funders, we help in launching
                   well-defined funding calls with clear criteria and structured
                   evaluation.
                 </p>
 
                 <Link to="/how-it-works" className="see-link">
-                  See how it works <img src="/images/fundink-logo.svg" alt="Arrow Right" className="arrow-right" />
+                  See how it works{" "}
+                  <img
+                    src="/images/fundink-logo.svg"
+                    alt="Arrow Right"
+                    className="arrow-right"
+                  />
                 </Link>
               </div>
             </Col>
@@ -93,7 +95,6 @@ const HomePage = () => {
             {/* Glass CTA Card */}
             <div className="hero-cta-wrapper">
               <div className="hero-cta-card">
-
                 {/* Moving border lines */}
                 <div className="moving-line top-line"></div>
                 <div className="moving-line bottom-line"></div>
@@ -103,7 +104,9 @@ const HomePage = () => {
                 <div className="cta-block">
                   <h3>Launch a Cohort</h3>
                   <Button className="btn-outline-custom">
-                    <span className="btn-outline-custom-text">Schedule a Call</span>
+                    <span className="btn-outline-custom-text">
+                      Schedule a Call
+                    </span>
                   </Button>
                 </div>
 
@@ -122,7 +125,6 @@ const HomePage = () => {
             <div className="hero-banner">
               Less Paperwork. Better Decisions. Greater Impact.
             </div>
-
           </Row>
         </Container>
       </section>
@@ -136,11 +138,20 @@ const HomePage = () => {
                 <Card.Body>
                   <div>
                     <h3 className="feature-title">Ecosystem Enabler</h3>
-                    <p className="feature-text">FundInk redefines funding by replacing long, unclear processes with structured calls, stage-wise applications, and merit-based evaluations that save time and improve decision-making for all.</p>
+                    <p className="feature-text">
+                      FundInk redefines funding by replacing long, unclear
+                      processes with structured calls, stage-wise applications,
+                      and merit-based evaluations that save time and improve
+                      decision-making for all.
+                    </p>
                   </div>
                   <Link to="/" className="expand-link">
                     Expand
-                    <img src="/images/fundink-logo.svg" alt="Arrow Right" className="arrow-right-big" />
+                    <img
+                      src="/images/fundink-logo.svg"
+                      alt="Arrow Right"
+                      className="arrow-right-big"
+                    />
                   </Link>
                   <div className="feature-visual network-pattern-1"></div>
                 </Card.Body>
@@ -151,11 +162,20 @@ const HomePage = () => {
                 <Card.Body>
                   <div>
                     <h3 className="feature-title">Redefining Funding</h3>
-                    <p className="feature-text">FundInk redefines funding by replacing long, unclear processes with structured calls, stage-wise applications, and merit-based evaluations that save time and improve decision-making for all.</p>
+                    <p className="feature-text">
+                      FundInk redefines funding by replacing long, unclear
+                      processes with structured calls, stage-wise applications,
+                      and merit-based evaluations that save time and improve
+                      decision-making for all.
+                    </p>
                   </div>
                   <Link to="/" className="expand-link">
                     Expand
-                    <img src="/images/fundink-logo.svg" alt="Arrow Right" className="arrow-right-big" />
+                    <img
+                      src="/images/fundink-logo.svg"
+                      alt="Arrow Right"
+                      className="arrow-right-big"
+                    />
                   </Link>
                   <div className="feature-visual network-pattern-2"></div>
                 </Card.Body>
@@ -166,11 +186,20 @@ const HomePage = () => {
                 <Card.Body>
                   <div>
                     <h3 className="feature-title">Maximizing Impact</h3>
-                    <p className="feature-text">FundInk redefines funding by replacing long, unclear processes with structured calls, stage-wise applications, and merit-based evaluations that save time and improve decision-making for all.</p>
+                    <p className="feature-text">
+                      FundInk redefines funding by replacing long, unclear
+                      processes with structured calls, stage-wise applications,
+                      and merit-based evaluations that save time and improve
+                      decision-making for all.
+                    </p>
                   </div>
                   <Link to="/" className="expand-link">
                     Expand
-                    <img src="/images/fundink-logo.svg" alt="Arrow Right" className="arrow-right-big" />
+                    <img
+                      src="/images/fundink-logo.svg"
+                      alt="Arrow Right"
+                      className="arrow-right-big"
+                    />
                   </Link>
                   <div className="feature-visual network-pattern-3"></div>
                 </Card.Body>
@@ -181,11 +210,20 @@ const HomePage = () => {
                 <Card.Body>
                   <div>
                     <h3 className="feature-title">Outreach and Visibility</h3>
-                    <p className="feature-text">FundInk redefines funding by replacing long, unclear processes with structured calls, stage-wise applications, and merit-based evaluations that save time and improve decision-making for all.</p>
+                    <p className="feature-text">
+                      FundInk redefines funding by replacing long, unclear
+                      processes with structured calls, stage-wise applications,
+                      and merit-based evaluations that save time and improve
+                      decision-making for all.
+                    </p>
                   </div>
                   <Link to="/" className="expand-link">
                     Expand
-                    <img src="/images/fundink-logo.svg" alt="Arrow Right" className="arrow-right-big" />
+                    <img
+                      src="/images/fundink-logo.svg"
+                      alt="Arrow Right"
+                      className="arrow-right-big"
+                    />
                   </Link>
                   <div className="feature-visual network-pattern-4"></div>
                 </Card.Body>
@@ -198,7 +236,9 @@ const HomePage = () => {
       {/* What We Offer Section */}
       <section className="offer-section">
         <Container>
-          <h2 className="section-title text-center">What We <span>Offer To Accelerate Impact</span></h2>
+          <h2 className="section-title text-center">
+            What We <span>Offer To Accelerate Impact</span>
+          </h2>
 
           {/* <div className="browser-mockup">
             <div className="browser-header">
@@ -273,8 +313,16 @@ const HomePage = () => {
           </div>  */}
 
           <div className="whole-section-image">
-            <img src="/images/whole-section.svg" alt="Offer Section" className="offer-section-visual" />
-            <img src="/images/whole-section-mobile.svg" alt="Offer Section" className="offer-section-visual mobile-show" />
+            <img
+              src="/images/whole-section.svg"
+              alt="Offer Section"
+              className="offer-section-visual"
+            />
+            <img
+              src="/images/whole-section-mobile.svg"
+              alt="Offer Section"
+              className="offer-section-visual mobile-show"
+            />
           </div>
         </Container>
       </section>
@@ -282,7 +330,9 @@ const HomePage = () => {
       {/* Sectors Section */}
       <section className="sectors-section">
         <Container>
-          <h2 className="section-title text-center">Sectors Where <span>We Enable Impact</span></h2>
+          <h2 className="section-title text-center">
+            Sectors Where <span>We Enable Impact</span>
+          </h2>
           {/* <div className="sectors-cloud">
             {sectors.map((sector, index) => (
               <span key={index} className={`sector-tag sector-${index % 5}`}>
@@ -297,19 +347,36 @@ const HomePage = () => {
       {/* Trusted By Section */}
       <section className="trusted-section">
         <Container>
-          <h2 className="section-title text-center">Trusted by <span>Industry Leaders</span></h2>
+          <h2 className="section-title text-center">
+            Trusted by <span>Industry Leaders</span>
+          </h2>
           <p className="section-subtitle text-center">
-            FundInk enables corporate and institutional funders to design focused funding programs, reach credible applicants, evaluate efficiently, and deploy capital where it delivers measurable and lasting impact.
+            FundInk enables corporate and institutional funders to design
+            focused funding programs, reach credible applicants, evaluate
+            efficiently, and deploy capital where it delivers measurable and
+            lasting impact.
           </p>
           <div className="partners-logos">
             <div className="partner-logo startup-india">
-              <img src="/images/trusted-1.png" alt="Startup India Logo" className="partner-logo-img" />
+              <img
+                src="/images/trusted-1.png"
+                alt="Startup India Logo"
+                className="partner-logo-img"
+              />
             </div>
             <div className="partner-logo m3m-foundation">
-              <img src="/images/trusted-2.png" alt="M3M Foundation Logo" className="partner-logo-img" />
+              <img
+                src="/images/trusted-2.png"
+                alt="M3M Foundation Logo"
+                className="partner-logo-img"
+              />
             </div>
             <div className="partner-logo inshakti">
-              <img src="/images/trusted-3.png" alt="Inshakti Logo" className="partner-logo-img" />
+              <img
+                src="/images/trusted-3.png"
+                alt="Inshakti Logo"
+                className="partner-logo-img"
+              />
             </div>
           </div>
         </Container>
@@ -323,42 +390,68 @@ const HomePage = () => {
               <div className="register-info">
                 <h2 className="register-title">Register with us</h2>
                 <p className="register-desc">
-                  Discover funding opportunities, launch structured funding calls, and connect with the right partners to create meaningful, measurable impact.
+                  Discover funding opportunities, launch structured funding
+                  calls, and connect with the right partners to create
+                  meaningful, measurable impact.
                 </p>
                 <div className="home-register-highlight">
-                  <h5 className="contact-card-head">Join India's most innovative funding platform</h5>
+                  <h5 className="contact-card-head">
+                    Join India's most innovative funding platform
+                  </h5>
                   <p className="home-register-text-muted">
-                    Transform your funding approach with enterprise-grade infrastructure designed for maximum impact and transparency.
+                    Transform your funding approach with enterprise-grade
+                    infrastructure designed for maximum impact and transparency.
                   </p>
 
                   <div className="row info-div">
                     <div className="col-lg-6 col-md-6 col-sm-6 col-12 border-on-right">
                       <h6 className="contact-small-head">Contact Us</h6>
                       <p className="home-contact-text">
-                        <img className="" src="/images/fill-mail.svg" alt="Email Icon" />
+                        <img
+                          className=""
+                          src="/images/fill-mail.svg"
+                          alt="Email Icon"
+                        />
                         <span>info@fundink.in</span>
                       </p>
                       <p className="home-contact-text pt-4">
-                        <img className="" src="/images/ring-phone.svg" alt="Phone Icon" />
+                        <img
+                          className=""
+                          src="/images/ring-phone.svg"
+                          alt="Phone Icon"
+                        />
                         <span>+91 98765 43210</span>
                       </p>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-6 col-12 d-flex flex-column align-items-center">
                       <h6 className="contact-small-head">Social Media</h6>
                       <div className="d-flex gap-2">
-
-                        <a href="/" className="text-white text-decoration-none d-flex align-items-center justify-content-center home-social-icon">
+                        <a
+                          href="/"
+                          className="text-white text-decoration-none d-flex align-items-center justify-content-center home-social-icon"
+                        >
                           <img src="/images/circle-mail.svg" alt="Email Icon" />
                         </a>
 
-                        <a href="/" className="text-white text-decoration-none d-flex align-items-center justify-content-center home-social-icon">
-                          <img src="/images/circle-twit.svg" alt="Twitter Icon" />
+                        <a
+                          href="/"
+                          className="text-white text-decoration-none d-flex align-items-center justify-content-center home-social-icon"
+                        >
+                          <img
+                            src="/images/circle-twit.svg"
+                            alt="Twitter Icon"
+                          />
                         </a>
 
-                        <a href="/" className="text-white text-decoration-none d-flex align-items-center justify-content-center home-social-icon">
-                          <img src="/images/circle-link.svg" alt="LinkedIn Icon" />
+                        <a
+                          href="/"
+                          className="text-white text-decoration-none d-flex align-items-center justify-content-center home-social-icon"
+                        >
+                          <img
+                            src="/images/circle-link.svg"
+                            alt="LinkedIn Icon"
+                          />
                         </a>
-
                       </div>
                     </div>
                   </div>
@@ -368,18 +461,43 @@ const HomePage = () => {
             <Col lg={7}>
               <div className="register-form-wrapper">
                 <h3 className="form-title">Get Started with FundInk</h3>
-                <Form onSubmit={handleSubmit} className="register-form">
+                <Form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="register-form"
+                >
                   <Row>
                     <Col md={6}>
                       <Form.Group className="form-group">
                         <Form.Label>Organization Name *</Form.Label>
-                        <input type="text" className="form-control" placeholder="Enter organization name" value={organizationName} onChange={e => setOrganizationName(e.target.value)} required />
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter organization name"
+                          {...register("organization_name", {
+                            required: "Organization name is required.",
+                          })}
+                        />
+                        {errors?.organization_name && (
+                          <p className="text-danger">
+                            {errors?.organization_name?.message}
+                          </p>
+                        )}
                       </Form.Group>
                     </Col>
                     <Col md={6}>
                       <Form.Group className="form-group">
                         <Form.Label>Contact Person *</Form.Label>
-                        <input type="text" className="form-control" placeholder="Enter contact person name" value={contactPerson} onChange={e => setContactPerson(e.target.value)} required />
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter contact person name"
+                          {...register("contact_person", {
+                            required: "Contact person is required.",
+                          })}
+                        />
+                        {errors?.contact_person && (
+                          <p className="text-danger">
+                            {errors?.contact_person?.message}
+                          </p>
+                        )}
                       </Form.Group>
                     </Col>
                   </Row>
@@ -387,46 +505,103 @@ const HomePage = () => {
                     <Col md={6}>
                       <Form.Group className="form-group">
                         <Form.Label>Email Address *</Form.Label>
-                        <input type="email" className="form-control" placeholder="Enter email address" value={email} onChange={e => setEmail(e.target.value)} required />
+                        <Form.Control
+                          type="email"
+                          placeholder="Enter email address"
+                          {...register("email", {
+                            required: "Email is required.",
+                          })}
+                        />
+                        {errors?.email && (
+                          <p className="text-danger">
+                            {errors?.email?.message}
+                          </p>
+                        )}
                       </Form.Group>
                     </Col>
                     <Col md={6}>
                       <Form.Group className="form-group">
                         <Form.Label>Phone Number *</Form.Label>
-                        <input type="tel" className="form-control" placeholder="Enter phone number" value={phone} onChange={e => setPhone(e.target.value)} required />
+                        <Form.Control
+                          type="tel"
+                          placeholder="Enter phone number"
+                          {...register("phone", {
+                            required: "Phone number is required.",
+                          })}
+                        />
+                        {errors?.phone && (
+                          <p className="text-danger">
+                            {errors?.phone?.message}
+                          </p>
+                        )}
                       </Form.Group>
                     </Col>
                   </Row>
                   <Form.Group className="form-group">
                     <Form.Label>Are you a *</Form.Label>
-                    <div className="custom-select-wrapper">
-                      <select className="form-select" value={userType} onChange={e => setUserType(e.target.value)} required>
-                        <option value="">Select</option>
-                        <option value="Fund Seeker">Fund Seeker</option>
-                        <option value="Funder">Funder</option>
-                        <option value="Partner">Partner</option>
-                      </select>
-                    </div>
+                    <Form.Select
+                      {...register("user_type", {
+                        required: "This field is required.",
+                      })}
+                    >
+                      <option value="">Select</option>
+                      <option value="funder">Funder</option>
+                      <option value="fund-seeker">Fund Seeker</option>
+                    </Form.Select>
+                    {errors?.user_type && (
+                      <p className="text-danger">
+                        {errors?.user_type?.message}
+                      </p>
+                    )}
                   </Form.Group>
-
                   <Form.Group className="form-group">
                     <Form.Label>How did you hear about us? *</Form.Label>
-                    <div className="custom-select-wrapper">
-                      <select className="form-select" value={hearAbout} onChange={e => setHearAbout(e.target.value)} required>
-                        <option value="">Select</option>
-                        <option value="Search Engine">Search Engine</option>
-                        <option value="Social Media">Social Media</option>
-                        <option value="Referral">Referral</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
+                    <Form.Select
+                      {...register("hear_about_us", {
+                        required: "This field is required.",
+                      })}
+                    >
+                      <option value="">Select</option>
+
+                      <option value="referrals">Referrals</option>
+                      <option value="fundink_website">Fundink Website</option>
+                      <option value="internet">Internet</option>
+                      <option value="networking_event">Networking Event</option>
+                      <option value="news_article">News Article</option>
+                      <option value="advertising">Advertising</option>
+                      <option value="visit">Direct Visit</option>
+                      <option value="linkedin">LinkedIn</option>
+                      <option value="social">Social Media</option>
+                      <option value="other">Other</option>
+                    </Form.Select>
+                    {errors?.hear_about_us && (
+                      <p className="text-danger">
+                        {errors?.hear_about_us?.message}
+                      </p>
+                    )}
                   </Form.Group>
                   <Form.Group className="form-group">
                     <Form.Label>Tell us about your requirement? *</Form.Label>
-                    <textarea className="form-control" placeholder="Tell us more" rows={2} value={requirement} onChange={e => setRequirement(e.target.value)} required />
+                    <Form.Control
+                      as="textarea"
+                      rows={2}
+                      placeholder="Tell us more"
+                      {...register("requirement", {
+                        required: "This field is required.",
+                      })}
+                    />
+                    {errors?.requirement && (
+                      <p className="text-danger">
+                        {errors?.requirement?.message}
+                      </p>
+                    )}
                   </Form.Group>
-                  <Button type="submit" className="btn-submit">
-                    Submit
+                  <Button
+                    type="submit"
+                    className="btn-submit"
+                    disabled={loading}
+                  >
+                    {loading ? "Submiting..." : "Submit"}
                   </Button>
                 </Form>
               </div>
@@ -435,7 +610,7 @@ const HomePage = () => {
         </Container>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
