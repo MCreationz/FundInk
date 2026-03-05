@@ -1,13 +1,16 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import HomePage from './pages/HomePage'
-import AboutUs from './pages/AboutUs'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import HomePage from "./pages/HomePage";
+import AboutUs from "./pages/AboutUs";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <div className="app-wrapper">
+      <Toaster position="top-right" reverseOrder />
+
       <Navbar />
       <main>
         <Routes>
@@ -22,7 +25,7 @@ function App() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
